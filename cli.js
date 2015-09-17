@@ -1,5 +1,8 @@
 #!/usr/bin/env node
 var program = require('commander');
+var colors = require('colors');
+
+program.version("0.1.0");
 
 program
     .command('init')
@@ -101,4 +104,35 @@ program.command('mv <remote_path> [new_path]>')
         require('./lib/Commands/MoveCommand').execute(remotePath, newPath, options);
     });
 
+program.command('pending')
+    .description("List the nodes that have a status of 'PENDING'")
+    .action(function (cmd, options) {
+        require('./lib/Commands/ListPendingCommand').execute(cmd, options);
+    });
+
+program.command('link [remote_path]')
+    .description("Generate a temporary, pre-authenticated download link")
+    .option ('-i, --id', 'Specify the remote node by its ID rather than path')
+    .action(function (remotePath, options) {
+        require('./lib/Commands/LinkCommand').execute(remotePath, options);
+    });
+
+program.command('find [query]')
+    .description("Find nodes that match a name (partials acceptable)")
+    //.option ('-i, --id', 'Specify the remote node by its ID rather than path')
+    .action(function (query, options) {
+        require('./lib/Commands/FindCommand').execute(query, options);
+    });
+
+program.command('download <remote_path> [local_path]')
+    .description("Download remote file or folder to specified local path")
+    .option ('-i, --id', 'Specify the remote node by its ID rather than path')
+    .action(function (remotePath, localPath, options) {
+        require('./lib/Commands/DownloadCommand').execute(remotePath, localPath, options);
+    });
+
 program.parse(process.argv);
+
+if (!process.argv.slice(2).length) {
+    program.outputHelp();
+}
