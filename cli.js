@@ -131,6 +131,13 @@ program.command('download <remote_path> [local_path]')
         require('./lib/Commands/DownloadCommand').execute(remotePath, localPath, options);
     });
 
+program.command('upload <local_path> [remote_path]')
+    .description("Upload local file or folder to remote directory")
+    .option ('-o, --overwrite', 'Overwrite the remote file if it already exists')
+    .action(function (localPath, remotePath, options) {
+        require('./lib/Commands/UploadCommand').execute(localPath, remotePath, options);
+    });
+
 program.parse(process.argv);
 
 if (!process.argv.slice(2).length) {
