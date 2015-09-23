@@ -25,7 +25,6 @@
     "elegant-spinner": "^1.0.0",
     "heredoc": "^1.3.1",
     "knex": "^0.8.6",
-    "log-update": "^1.0.0",
     "moment": "^2.10.6",
     "mysql": "^2.9.0",
     "promise": "^7.0.4",
