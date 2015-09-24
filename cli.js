@@ -79,7 +79,7 @@ program.command('tree [remote_path]')
         require('./lib/Commands/TreeCommand').execute(remotePath, options);
     });
 
-program.command('resolve [id]')
+program.command('resolve <id>')
     .description("Return a node's remote path by its ID")
     .action(function (id, options) {
         require('./lib/Commands/ResolveCommand').execute(id, options);
