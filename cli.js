@@ -7,20 +7,20 @@ program.version("0.1.0");
 program
     .command('init')
     .description("Initialize and authorize with Amazon's Cloud Drive")
-    .action(function(cmd, options) {
-        require('./lib/Commands/InitCommand').execute(cmd, options);
+    .action(function() {
+        require('./lib/Commands/InitCommand').execute();
     });
 
 program.command('sync')
     .description("Sync the local cache with Amazon Cloud Drive")
-    .action(function (cmd, options) {
-        require('./lib/Commands/SyncCommand').execute(cmd, options);
+    .action(function () {
+        require('./lib/Commands/SyncCommand').execute();
     });
 
 program.command('clearcache')
     .description('Clear the local cache')
-    .action(function (cmd, options) {
-        require('./lib/Commands/ClearCacheCommand').execute(cmd, options);
+    .action(function () {
+        require('./lib/Commands/ClearCacheCommand').execute();
     });
 
 program.command('metadata [remotePath]')
@@ -40,14 +40,16 @@ program.command('config [option] [value]')
 program.command('ls [remote_path]')
     .description('List all remote nodes belonging to a specified node')
     .option('-i, --id', 'Specify the remote node by its ID rather than path')
+    .option('-t, --time', 'Sort nodes by time modified')
     .action(function (remotePath, options) {
         require('./lib/Commands/ListCommand').execute(remotePath, options);
     });
 
 program.command('trash')
     .description('List all nodes in the trash')
-    .action(function (cmd, options) {
-        require('./lib/Commands/ListTrashCommand').execute(cmd, options);
+    .option('-t, --time', 'Sort nodes by time modified')
+    .action(function (options) {
+        require('./lib/Commands/ListTrashCommand').execute(options);
     });
 
 program.command('rm <remote_path>')
@@ -106,8 +108,9 @@ program.command('mv <remote_path> [new_path]>')
 
 program.command('pending')
     .description("List the nodes that have a status of 'PENDING'")
-    .action(function (cmd, options) {
-        require('./lib/Commands/ListPendingCommand').execute(cmd, options);
+    .option('-t, --time', 'Sort nodes by time modified')
+    .action(function (options) {
+        require('./lib/Commands/ListPendingCommand').execute(options);
     });
 
 program.command('link [remote_path]')
@@ -119,7 +122,7 @@ program.command('link [remote_path]')
 
 program.command('find [query]')
     .description("Find nodes that match a name (partials acceptable)")
-    //.option ('-i, --id', 'Specify the remote node by its ID rather than path')
+    .option('-t, --time', 'Sort nodes by time modified')
     .action(function (query, options) {
         require('./lib/Commands/FindCommand').execute(query, options);
     });
