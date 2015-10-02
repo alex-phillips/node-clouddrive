@@ -83,8 +83,8 @@ program.command('tree [remote_path]')
 
 program.command('resolve <id>')
     .description("Return a node's remote path by its ID")
-    .action(function (id, options) {
-        require('../lib/Commands/ResolveCommand').execute(id, options);
+    .action(function (id) {
+        require('../lib/Commands/ResolveCommand').execute(id);
     });
 
 program.command('rename <remote_path> <name>')
