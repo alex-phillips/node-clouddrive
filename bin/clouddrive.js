@@ -10,25 +10,25 @@ program.command('clearcache')
         require('../lib/Commands/ClearCacheCommand').execute();
     });
 
-program.command('config [option] [value]')
+program.command('config [key] [value]')
     .description('Read, write, and remove config options')
     .option('-r, --remove', 'Remove / reset the config option to its default value')
-    .action(function (option, value, options) {
-        require('../lib/Commands/ConfigCommand').execute(option, value, options);
+    .action(function (key, value, options) {
+        require('../lib/Commands/ConfigCommand').execute(key, value, options);
     });
 
-program.command('download <remote_path> [local_path]')
+program.command('download <src> [dest]')
     .description("Download remote file or folder to specified local path")
     .option ('-i, --id', 'Specify the remote node by its ID rather than path')
-    .action(function (remotePath, localPath, options) {
-        require('../lib/Commands/DownloadCommand').execute(remotePath, localPath, options);
+    .action(function (src, dest, options) {
+        require('../lib/Commands/DownloadCommand').execute(src, dest, options);
     });
 
-program.command('du [remote_path]')
+program.command('du [path]')
     .description('Display the disk usage (recursively) for the specified node')
     .option ('-i, --id', 'Specify the remote node by its ID rather than path')
-    .action(function (remotePath, options) {
-        require('../lib/Commands/DiskUsageCommand').execute(remotePath, options);
+    .action(function (path, options) {
+        require('../lib/Commands/DiskUsageCommand').execute(path, options);
     });
 
 program.command('find [query]')
@@ -92,11 +92,11 @@ program.command('quota')
         require('../lib/Commands/QuotaCommand').execute(options);
     });
 
-program.command('rename <remote_path> <name>')
+program.command('rename <path> <name>')
     .description("Rename a remote node")
     .option ('-i, --id', 'Specify the remote node by its ID rather than path')
-    .action(function (remotePath, name, options) {
-        require('../lib/Commands/RenameCommand').execute(remotePath, name, options);
+    .action(function (path, name, options) {
+        require('../lib/Commands/RenameCommand').execute(path, name, options);
     });
 
 program.command('resolve <id>')
@@ -105,18 +105,18 @@ program.command('resolve <id>')
         require('../lib/Commands/ResolveCommand').execute(id);
     });
 
-program.command('restore <remote_path>')
+program.command('restore <path>')
     .description('Restore a remote node from the trash')
     .option('-i, --id', 'Specify the remote node by its ID rather than path')
-    .action(function (remotePath, options) {
-        require('../lib/Commands/RestoreCommand').execute(remotePath, options);
+    .action(function (path, options) {
+        require('../lib/Commands/RestoreCommand').execute(path, options);
     });
 
-program.command('rm <remote_path>')
+program.command('rm <path>')
     .description('Move a remote Node to the trash')
     .option('-i, --id', 'Specify the remote node by its ID rather than path')
-    .action(function (remotePath, options) {
-        require('../lib/Commands/TrashCommand').execute(remotePath, options);
+    .action(function (path, options) {
+        require('../lib/Commands/TrashCommand').execute(path, options);
     });
 
 program.command('sync')
@@ -140,11 +140,11 @@ program.command('tree [remote_path]')
         require('../lib/Commands/TreeCommand').execute(remotePath, options);
     });
 
-program.command('upload <local_path> [remote_path]')
+program.command('upload <src> [dest]')
     .description("Upload local file or folder to remote directory")
     .option ('-o, --overwrite', 'Overwrite the remote file if it already exists')
-    .action(function (localPath, remotePath, options) {
-        require('../lib/Commands/UploadCommand').execute(localPath, remotePath, options);
+    .action(function (src, dest, options) {
+        require('../lib/Commands/UploadCommand').execute(src, dest, options);
     });
 
 program.command('usage')
