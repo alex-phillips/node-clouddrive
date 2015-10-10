@@ -12,7 +12,7 @@ program.command('clearcache')
 
 program.command('config [option] [value]')
     .description('Read, write, and remove config options')
-    .option('-r', '--remove', 'Remove / reset the config option to its default value')
+    .option('-r, --remove', 'Remove / reset the config option to its default value')
     .action(function (option, value, options) {
         require('../lib/Commands/ConfigCommand').execute(option, value, options);
     });
