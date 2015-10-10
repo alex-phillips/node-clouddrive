@@ -1,0 +1,104 @@
+0 info it worked if it ends with ok
+1 verbose cli [ '/Users/alexphillips/.nvm/versions/node/v4.1.2/bin/node',
+1 verbose cli   '/Users/alexphillips/.nvm/versions/node/v4.1.2/bin/npm',
+1 verbose cli   'publish' ]
+2 info using npm@2.14.4
+3 info using node@v4.1.2
+4 verbose publish [ '.' ]
+5 silly cache add args [ '.', null ]
+6 verbose cache add spec .
+7 silly cache add parsed spec Result {
+7 silly cache add   raw: '.',
+7 silly cache add   scope: null,
+7 silly cache add   name: null,
+7 silly cache add   rawSpec: '.',
+7 silly cache add   spec: '/Users/alexphillips/Documents/code/node/clouddrive',
+7 silly cache add   type: 'directory' }
+8 verbose addLocalDirectory /Users/alexphillips/.npm/clouddrive/0.1.0/package.tgz not in flight; packing
+9 verbose tar pack [ '/Users/alexphillips/.npm/clouddrive/0.1.0/package.tgz',
+9 verbose tar pack   '/Users/alexphillips/Documents/code/node/clouddrive' ]
+10 verbose tarball /Users/alexphillips/.npm/clouddrive/0.1.0/package.tgz
+11 verbose folder /Users/alexphillips/Documents/code/node/clouddrive
+12 info prepublish clouddrive@0.1.0
+13 verbose addLocalTarball adding from inside cache /Users/alexphillips/.npm/clouddrive/0.1.0/package.tgz
+14 silly cache afterAdd clouddrive@0.1.0
+15 verbose afterAdd /Users/alexphillips/.npm/clouddrive/0.1.0/package/package.json not in flight; writing
+16 verbose afterAdd /Users/alexphillips/.npm/clouddrive/0.1.0/package/package.json written
+17 silly publish { name: 'clouddrive',
+17 silly publish   version: '0.1.0',
+17 silly publish   description: 'Amazon Cloud Drive SDK and CLI',
+17 silly publish   bin: { clouddrive: 'bin/clouddrive.js' },
+17 silly publish   scripts: { test: 'echo "Error: no test specified" && exit 1' },
+17 silly publish   keywords: [ 'amazon', 'clouddrive', 'cloud', 'drive', 'sdk', 'cli' ],
+17 silly publish   author: { name: 'Alex Phillips', email: 'ahp118@gmail.com' },
+17 silly publish   license: 'ISC',
+17 silly publish   dependencies:
+17 silly publish    { async: '^1.4.2',
+17 silly publish      colors: '^1.1.2',
+17 silly publish      commander: '^2.8.1',
+17 silly publish      'elegant-spinner': '^1.0.0',
+17 silly publish      heredoc: '^1.3.1',
+17 silly publish      inquirer: '^0.10.0',
+17 silly publish      knex: '^0.8.6',
+17 silly publish      moment: '^2.10.6',
+17 silly publish      promise: '^7.0.4',
+17 silly publish      request: '^2.61.0',
+17 silly publish      sqlite3: '^3.1.0' },
+17 silly publish   main: 'index.js',
+17 silly publish   devDependencies: {},
+17 silly publish   readme: '# Amazon Cloud Drive CLI and SDK\n\n## Install\n\n```\nnpm install -g clouddrive\n```\n\n## Usage\n\n### Initial Authorization\n\nBefore using the CLI, the config values for the application will need to be set. Use the `config` command to view and set the available options.\n\n```\n$ clouddrive config\nemail             =\nclient-id         =\nclient-secret     =\njson.pretty       = false\nupload.duplicates = false\ndatabase.driver   = sqlite\ndatabase.host     = 127.0.0.1\ndatabase.database = clouddrive\ndatabase.username = root\ndatabase.password =\nshow.trash        = true\nshow.pending      = true\n\n$ clouddrive config email me@example.com\nemail saved\n```\n\nYou will need to set values for `email` (for the Amazon Cloud Drive account to use), `client-id` and `client-secret` Cloud Drive API credentials. Once these values are set, run the `init` command to being the authorization process.\n\n```\n$ clouddrive init\nInitializing...\nInitial authorization is required\nhttps://www.amazon.com/ap/oa?client_id=...\n? url:\n```\n\nNaviage to the URL displayed to to authorize the app with your Cloud Drive account. This will redirect your browser to a new URL: paste that URL into the prompt.\n\n### Syncing\n\nPeriodically (and after the initial authorization), you will need to run the `sync` command to pull down any Cloud Drive changes to the local cache. This local cache is required for the CLI to work.\n\n```\n$ clouddrive sync\n```\n\n### Commands\n\nThe CLI makes interacting with Cloud Drive feel like using a remote filesystem with commands such as `ls`, `du`, `mkdir`, etc.\n\n```\nUsage: clouddrive [options] [command]\n\n\nCommands:\n\n    clearcache                                     Clear the local cache\n    config [options] [option] [value]              Read, write, and remove config options\n    download [options] <remote_path> [local_path]  Download remote file or folder to specified local path\n    du [options] [remote_path]                     Display the disk usage (recursively) for the specified node\n    find [options] [query]                         Find nodes that match a name (partials acceptable)\n    init                                           Initialize and authorize with Amazon\'s Cloud Drive\n    link [options] [remote_path]                   Generate a temporary, pre-authenticated download link\n    ls [options] [remote_path]                     List all remote nodes belonging to a specified node\n    metadata [options] [remotePath]                Retrieve metadata of a node by its path\n    mkdir <remote_path>                            Create a remote directory path (recursively)\n    mv <remote_path> [new_path]                    Move a remote node to a new directory\n    pending [options]                              List the nodes that have a status of \'PENDING\'\n    quota                                          Show Cloud Drive account quota\n    rename [options] <remote_path> <name>          Rename a remote node\n    resolve <id>                                   Return a node\'s remote path by its ID\n    restore [options] <remote_path>                Restore a remote node from the trash\n    rm [options] <remote_path>                     Move a remote Node to the trash\n    sync                                           Sync the local cache with Amazon Cloud Drive\n    trash [options]                                List all nodes in the trash\n    tree [options] [remote_path]                   Print directory tree of the given node\n    upload [options] <local_path> [remote_path]    Upload local file or folder to remote directory\n    usage                                          Show Cloud Drive account usage\n\nOptions:\n\n    -h, --help     output usage information\n    -V, --version  output the version number\n```\n',
+17 silly publish   readmeFilename: 'README.md',
+17 silly publish   gitHead: '4c108d03f7ff2005c9a0d76a30fc26a452ee9dfa',
+17 silly publish   _id: 'clouddrive@0.1.0',
+17 silly publish   _shasum: '739adb64b99d4b013d0f051650c55aad0f716506',
+17 silly publish   _from: '.' }
+18 verbose getPublishConfig undefined
+19 silly mapToRegistry name clouddrive
+20 silly mapToRegistry using default registry
+21 silly mapToRegistry registry https://registry.npmjs.org/
+22 silly mapToRegistry uri https://registry.npmjs.org/clouddrive
+23 verbose publish registryBase https://registry.npmjs.org/
+24 silly publish uploading /Users/alexphillips/.npm/clouddrive/0.1.0/package.tgz
+25 verbose request uri https://registry.npmjs.org/clouddrive
+26 verbose request sending authorization for write operation
+27 info attempt registry request try #1 at 2:20:04 PM
+28 verbose request using bearer token for auth
+29 verbose request id a467550b0dda0bf7
+30 http request PUT https://registry.npmjs.org/clouddrive
+31 http 403 https://registry.npmjs.org/clouddrive
+32 verbose headers { 'content-type': 'application/json',
+32 verbose headers   'cache-control': 'max-age=60',
+32 verbose headers   'content-length': '95',
+32 verbose headers   'accept-ranges': 'bytes',
+32 verbose headers   date: 'Sat, 10 Oct 2015 18:20:06 GMT',
+32 verbose headers   via: '1.1 varnish',
+32 verbose headers   connection: 'keep-alive',
+32 verbose headers   'x-served-by': 'cache-jfk1029-JFK',
+32 verbose headers   'x-cache': 'MISS',
+32 verbose headers   'x-cache-hits': '0',
+32 verbose headers   'x-timer': 'S1444501205.415351,VS0,VE1103' }
+33 verbose request invalidating /Users/alexphillips/.npm/registry.npmjs.org/clouddrive on PUT
+34 error publish Failed PUT 403
+35 verbose stack Error: "You cannot publish over the previously published version 0.1.0." : clouddrive
+35 verbose stack     at makeError (/Users/alexphillips/.nvm/versions/node/v4.1.2/lib/node_modules/npm/node_modules/npm-registry-client/lib/request.js:263:12)
+35 verbose stack     at CachingRegistryClient.<anonymous> (/Users/alexphillips/.nvm/versions/node/v4.1.2/lib/node_modules/npm/node_modules/npm-registry-client/lib/request.js:251:14)
+35 verbose stack     at Request._callback (/Users/alexphillips/.nvm/versions/node/v4.1.2/lib/node_modules/npm/node_modules/npm-registry-client/lib/request.js:171:14)
+35 verbose stack     at Request.self.callback (/Users/alexphillips/.nvm/versions/node/v4.1.2/lib/node_modules/npm/node_modules/request/request.js:198:22)
+35 verbose stack     at emitTwo (events.js:87:13)
+35 verbose stack     at Request.emit (events.js:172:7)
+35 verbose stack     at Request.<anonymous> (/Users/alexphillips/.nvm/versions/node/v4.1.2/lib/node_modules/npm/node_modules/request/request.js:1073:14)
+35 verbose stack     at emitOne (events.js:82:20)
+35 verbose stack     at Request.emit (events.js:169:7)
+35 verbose stack     at IncomingMessage.<anonymous> (/Users/alexphillips/.nvm/versions/node/v4.1.2/lib/node_modules/npm/node_modules/request/request.js:1019:12)
+36 verbose statusCode 403
+37 verbose pkgid clouddrive
+38 verbose cwd /Users/alexphillips/Documents/code/node/clouddrive
+39 error Darwin 14.5.0
+40 error argv "/Users/alexphillips/.nvm/versions/node/v4.1.2/bin/node" "/Users/alexphillips/.nvm/versions/node/v4.1.2/bin/npm" "publish"
+41 error node v4.1.2
+42 error npm  v2.14.4
+43 error code E403
+44 error "You cannot publish over the previously published version 0.1.0." : clouddrive
+45 error If you need help, you may report this error at:
+45 error     <https://github.com/npm/npm/issues>
+46 verbose exit [ 1, true ]
