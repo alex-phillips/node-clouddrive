@@ -1,7 +1,7 @@
 {
   "name": "clouddrive",
   "version": "0.2.0",
-  "description": "Amazon Cloud Drive SDK and CLI",
+  "description": "Amazon Cloud Drive CLI and SDK",
   "bin": {
     "clouddrive": "bin/clouddrive.js"
   },
@@ -13,8 +13,10 @@
     "clouddrive",
     "cloud",
     "drive",
+    "acd_cli",
     "sdk",
-    "cli"
+    "cli",
+    "acd"
   ],
   "author": "Alex Phillips <ahp118@gmail.com>",
   "license": "ISC",
