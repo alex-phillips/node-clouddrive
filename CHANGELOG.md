@@ -13,6 +13,7 @@ All Notable changes to `clouddrive-node` will be documented in this file
 ### Fixed
 - Was not exposing the code as an NPM module properly
 - Added `try/catch` support for `Errors` in command functions
+- `pretty.json` config value actually controls JSON output formatting now
 
 ## 0.2.0
 
