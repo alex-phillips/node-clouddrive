@@ -2,7 +2,7 @@
 var program = require('commander');
 var colors = require('colors');
 
-program.version("0.2.0");
+program.version("0.2.1");
 
 program.command('clearcache')
     .description('Clear the local cache')
