@@ -1,6 +1,6 @@
 # Amazon Cloud Drive CLI and SDK
 
-Amazon's Cloud Drive offers unlimited cloud storage but no good way to interact with your data (upload, download, find, etc). The web app is lacking and the desktop app is sub-par. So here's a command-line interface and SDK for interactin with Cloud Drive as if it were a filesystem.
+Amazon's Cloud Drive offers unlimited cloud storage but no good way to interact with your data (upload, download, find, etc). The web app is lacking and the desktop app is sub-par. So here's a command-line interface and SDK for interacting with Cloud Drive as if it were a filesystem.
 
 ## Install
 
