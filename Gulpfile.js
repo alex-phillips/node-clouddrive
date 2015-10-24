@@ -1,14 +1,16 @@
-var gulp = require("gulp");
-var jshint = require("gulp-jshint");
+var gulp = require('gulp');
+var jshint = require('gulp-jshint');
 
-gulp.task("lint", function () {
+gulp.task('lint', function () {
   gulp.src([
-    "./lib/*.js",
-    "./lib/Cache/*.js",
-    "./lib/Commands/*.js"
+    './*.js',
+    './bin/*.js',
+    './lib/*.js',
+    './lib/Cache/*.js',
+    './lib/Commands/*.js'
   ])
     .pipe(jshint())
-    .pipe(jshint.reporter("default"));
+    .pipe(jshint.reporter('default'));
 });
 
-gulp.task("default", ["lint"]);
+gulp.task('default', ['lint']);
