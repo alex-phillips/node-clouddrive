@@ -36,5 +36,8 @@
     "sqlite3": "^3.1.0"
   },
   "main": "index.js",
-  "devDependencies": {}
+  "devDependencies": {
+    "gulp": "^3.9.0",
+    "gulp-jshint": "^1.11.2"
+  }
 }
