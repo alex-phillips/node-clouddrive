@@ -2,6 +2,11 @@
 
 All Notable changes to `clouddrive-node` will be documented in this file
 
+## 0.2.2
+
+### fixed
+- Incorrect prototypal inheritance with some objects
+
 ## 0.2.1
 
 ### Added
