@@ -6,6 +6,7 @@ All Notable changes to `clouddrive-node` will be documented in this file
 
 ### fixed
 - Incorrect prototypal inheritance with some objects
+- `authorize` call on `Account` ALWAYS checks to make sure we have a `metadataUrl` and `contentUrl`, not just on initial authorization.
 
 ## 0.2.1
 
