@@ -1,6 +1,8 @@
 #!/usr/bin/env node
+
+'use strict';
+
 var program = require('commander');
-var colors = require('colors');
 
 program.version('0.2.1');
 
@@ -38,8 +40,13 @@ program.command('find [query]')
     require('../lib/Commands/FindCommand').execute(query, options);
   });
 
-program
-  .command('init')
+program.command('info')
+  .description('Show Cloud Drive account info')
+  .action(function(options) {
+    require('../lib/Commands/InfoCommand').execute(options);
+  });
+
+program.command('init')
   .description('Initialize and authorize with Amazon Cloud Drive')
   .action(function() {
     require('../lib/Commands/InitCommand').execute();
@@ -136,6 +143,7 @@ program.command('tree [remote_path]')
   .description('Print directory tree of the given node')
   .option('-m, --markdown', 'Output tree in Markdown')
   .option('-i, --id', 'Specify the remote node by its ID rather than path')
+  .option('-a, --assets', 'Include ASSET nodes')
   .action(function(remotePath, options) {
     require('../lib/Commands/TreeCommand').execute(remotePath, options);
   });
