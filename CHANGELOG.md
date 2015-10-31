@@ -4,7 +4,11 @@ All Notable changes to `clouddrive-node` will be documented in this file
 
 ## 0.2.2
 
-### fixed
+### Added
+- `downloadFile` options now accepts an optional stream to write to
+- `info` command retrieves and displays account information from Amazon
+
+### Fixed
 - Incorrect prototypal inheritance with some objects
 - `authorize` call on `Account` ALWAYS checks to make sure we have a `metadataUrl` and `contentUrl`, not just on initial authorization.
 
@@ -13,8 +17,6 @@ All Notable changes to `clouddrive-node` will be documented in this file
 ### Added
 - This app can now be used without needing API credentials! If you attempt to `init` your account without specifying a `client-id` or `client-secret`, the app will request authorization to your account via credentials owned by me (the creator of this repo). NOTE: No personal information is saved.
 - Added various options to pass into `download` function. This provides ability to do things like output progress bars, run code before download, and run code on completion. The CLI now utilizes this for displaying progress bars for each file downloaded/uploaded.
-- `downloadFile` options now accepts an optional stream to write to
-- `info` command retrieves and displays account information from Amazon
 
 ### Deprecated
 
