@@ -4,7 +4,7 @@
 
 var program = require('commander');
 
-program.version('0.2.1');
+program.version('0.2.2');
 
 program.command('clearcache')
   .description('Clear the local cache')
@@ -52,38 +52,39 @@ program.command('init')
     require('../lib/Commands/InitCommand').execute();
   });
 
-program.command('link [remote_path]')
+program.command('link [path]')
   .description('Generate a temporary, pre-authenticated download link')
   .option('-i, --id', 'Specify the remote node by its ID rather than path')
-  .action(function(remotePath, options) {
-    require('../lib/Commands/LinkCommand').execute(remotePath, options);
+  .action(function(path, options) {
+    require('../lib/Commands/LinkCommand').execute(path, options);
   });
 
-program.command('ls [remote_path]')
+program.command('ls [path]')
   .description('List all remote nodes belonging to a specified node')
   .option('-i, --id', 'Specify the remote node by its ID rather than path')
   .option('-t, --time', 'Sort nodes by time modified')
-  .action(function(remotePath, options) {
-    require('../lib/Commands/ListCommand').execute(remotePath, options);
+  .action(function(path, options) {
+    require('../lib/Commands/ListCommand').execute(path, options);
   });
 
-program.command('metadata [remotePath]')
+program.command('metadata [path]')
   .description('Retrieve metadata of a node by its path')
   .option('-i, --id', 'Specify the remote node by its ID rather than path')
-  .action(function(remotePath, options) {
-    require('../lib/Commands/MetadataCommand').execute(remotePath, options);
+  .action(function(path, options) {
+    require('../lib/Commands/MetadataCommand').execute(path, options);
   });
 
-program.command('mkdir <remote_path>')
+program.command('mkdir <path>')
   .description('Create a remote directory path (recursively)')
-  .action(function(cmd, options) {
-    require('../lib/Commands/MkdirCommand').execute(cmd, options);
+  .action(function(path, options) {
+    require('../lib/Commands/MkdirCommand').execute(path, options);
   });
 
-program.command('mv <remote_path> [new_path]')
+program.command('mv <path> [new_path]')
   .description('Move a remote node to a new directory')
-  .action(function(remotePath, newPath, options) {
-    require('../lib/Commands/MoveCommand').execute(remotePath, newPath, options);
+  .option('-i, --id', 'Specify the remote node by its ID rather than path')
+  .action(function(path, newPath, options) {
+    require('../lib/Commands/MoveCommand').execute(path, newPath, options);
   });
 
 program.command('pending')
@@ -139,13 +140,13 @@ program.command('trash')
     require('../lib/Commands/ListTrashCommand').execute(options);
   });
 
-program.command('tree [remote_path]')
+program.command('tree [path]')
   .description('Print directory tree of the given node')
   .option('-m, --markdown', 'Output tree in Markdown')
   .option('-i, --id', 'Specify the remote node by its ID rather than path')
   .option('-a, --assets', 'Include ASSET nodes')
-  .action(function(remotePath, options) {
-    require('../lib/Commands/TreeCommand').execute(remotePath, options);
+  .action(function(path, options) {
+    require('../lib/Commands/TreeCommand').execute(path, options);
   });
 
 program.command('upload <src> [dest]')
@@ -157,8 +158,13 @@ program.command('upload <src> [dest]')
 
 program.command('usage')
   .description('Show Cloud Drive account usage')
-  .action(function(localPath, remotePath, options) {
+  .action(function(options) {
     require('../lib/Commands/UsageCommand').execute(options);
+  });
+
+program.command('*')
+  .action(function(cmd) {
+    Command.error('Invalid command \'' + cmd + '\'');
   });
 
 program.parse(process.argv);
