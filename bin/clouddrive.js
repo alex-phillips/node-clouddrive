@@ -3,6 +3,7 @@
 'use strict';
 
 var program = require('commander');
+var Command = require('../lib/Commands/Command');
 
 program.version('0.2.2');
 
