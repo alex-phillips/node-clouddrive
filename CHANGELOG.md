@@ -2,6 +2,11 @@
 
 All Notable changes to `clouddrive-node` will be documented in this file
 
+## 0.2.3
+
+### Fixed
+- `Command` was not being required in the `bin` file.
+
 ## 0.2.2
 
 ### Added
