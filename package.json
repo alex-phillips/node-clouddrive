@@ -2,6 +2,7 @@
   "name": "clouddrive",
   "version": "0.2.1",
   "description": "Amazon Cloud Drive CLI and SDK",
+  "repository": "alex-phillips/clouddrive-node",
   "bin": {
     "clouddrive": "bin/clouddrive.js"
   },
