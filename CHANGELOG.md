@@ -7,10 +7,14 @@ All Notable changes to `clouddrive-node` will be documented in this file
 ### Added
 - `downloadFile` options now accepts an optional stream to write to
 - `info` command retrieves and displays account information from Amazon
+- Added a "catch all" for invalid commands instead of `clouddrive` not outputting anything.
 
 ### Fixed
 - Incorrect prototypal inheritance with some objects
 - `authorize` call on `Account` ALWAYS checks to make sure we have a `metadataUrl` and `contentUrl`, not just on initial authorization.
+- Fixed output size of year string (and padding) for nodes not created in the current year.
+- `init` now outputs the URL for initial authentication for systems without a UI.
+- Added `repository` field in `package.json`.
 
 ## 0.2.1
 
