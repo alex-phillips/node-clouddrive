@@ -7,6 +7,13 @@ var Command = require('../lib/Commands/Command');
 
 program.version('0.2.2');
 
+program.command('cat <path>')
+  .description('Output contents of remote file to STDOUT')
+  .option('-i, --id', 'Specify the remote node by its ID rather than path')
+  .action(function(path, options) {
+    require('../lib/Commands/CatCommand').execute(path, options);
+  });
+
 program.command('clearcache')
   .description('Clear the local cache')
   .action(function() {
