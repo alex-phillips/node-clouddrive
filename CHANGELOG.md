@@ -2,6 +2,14 @@
 
 All Notable changes to `clouddrive-node` will be documented in this file
 
+## 0.2.3
+
+### Added
+- `cat` command outputs contents of remote file to STDOUT.
+
+### Fixed
+- `download` command no longer outputs multiple "failure" messages when it fails to download remote file.
+
 ## 0.2.2
 
 ### Added
