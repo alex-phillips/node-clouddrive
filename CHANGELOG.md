@@ -6,6 +6,7 @@ All Notable changes to `clouddrive-node` will be documented in this file
 
 ### Added
 - `cat` command outputs contents of remote file to STDOUT.
+- Added "searching" spinner when running `find` command.
 
 ### Fixed
 - `download` command no longer outputs multiple "failure" messages when it fails to download remote file.
