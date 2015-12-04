@@ -10,6 +10,7 @@ All Notable changes to `clouddrive-node` will be documented in this file
 
 ### Fixed
 - `download` command no longer outputs multiple "failure" messages when it fails to download remote file.
+- Fixed authorization renewal issue where we weren't properly checking of the API key OR secret were both invalid.
 
 ## 0.2.2
 
