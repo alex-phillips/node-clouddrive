@@ -172,7 +172,7 @@ program.command('usage')
 
 program.command('*')
   .action(function(cmd) {
-    Command.error('Invalid command \'' + cmd + '\'');
+    Command.error(`Invalid command '${cmd}'`);
   });
 
 program.parse(process.argv);
