@@ -8,6 +8,7 @@ All Notable changes to `clouddrive-node` will be documented in this file
 - `cat` command outputs contents of remote file to STDOUT.
 - Added "searching" spinner when running `find` command.
 - Refactored the entire codebase to use several ES6 features including classes, template strings, arrow function notations, etc.
+- Failed uploads due to expired tokens now retry `x` number of times (set in the config).
 
 ### Fixed
 - `download` command no longer outputs multiple "failure" messages when it fails to download remote file.
