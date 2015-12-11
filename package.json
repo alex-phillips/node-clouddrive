@@ -24,7 +24,6 @@
   "dependencies": {
     "async": "^1.4.2",
     "colors": "^1.1.2",
-    "commander": "^2.8.1",
     "elegant-spinner": "^1.0.0",
     "inquirer": "^0.10.0",
     "knex": "^0.8.6",
@@ -32,7 +31,9 @@
     "open": "0.0.5",
     "progress": "^1.1.8",
     "request": "^2.61.0",
-    "sqlite3": "^3.1.0"
+    "semver": "^5.1.0",
+    "sqlite3": "^3.1.0",
+    "yargs": "^3.31.0"
   },
   "main": "index.js",
   "devDependencies": {
