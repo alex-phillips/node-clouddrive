@@ -8,7 +8,7 @@ var yargs = require('yargs'),
   pkgJson = require('../package.json');
 
 try {
-  if (semver.lt(process.version.replace('v', ''), '0.10.0')) {
+  if (semver.lt(process.version.replace('v', ''), '4.0.0')) {
     console.error(`${pkgJson.name.cyan.bold}, CLI version ${pkgJson.version}`);
     Command.error('ERROR: Cloud Drive requires Node.js 0.10 or newer.');
     Command.log(`\nVisit ${'http://nodejs.org/'.cyan} to download a newer version.\n`);
