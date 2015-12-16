@@ -5,7 +5,14 @@ var yargs = require('yargs'),
   colors = require('colors'),
   Command = require('../lib/Commands/Command'),
   semver = require('semver'),
-  pkgJson = require('../package.json');
+  pkgJson = require('../package.json'),
+  banner = `_________ .__                   .___ ________        .__
+\\_   ___ \\|  |   ____  __ __  __| _/ \\______ \\_______|__|__  __ ____
+/    \\  \\/|  |  /  _ \\|  |  \\/ __ |   |    |  \\_  __ \\  \\  \\/ // __ \\
+\\     \\___|  |_(  <_> )  |  / /_/ |   |    \`   \\  | \\/  |\\   /\\  ___/
+ \\______  /____/\\____/|____/\\____ |  /_______  /__|  |__| \\_/  \\___  >
+        \\/                       \\/          \\/                    \\/
+`.green;
 
 try {
   if (semver.lt(process.version.replace('v', ''), '4.0.0')) {
@@ -297,7 +304,7 @@ var config = {
     },
     {
       command: 'upload',
-      usage: '[options] <src> [dest]',
+      usage: '[options] <src...> <dest>',
       description: 'Upload local file or folder to remote directory',
       options: {
         o: {
@@ -317,18 +324,20 @@ var config = {
       file: '../lib/Commands/UsageCommand'
     }
   ],
-  globalFlags: {
-    v: {
-      alias: 'verbose',
-      demand: false,
-      describe: 'Output verbosity: 1 for normal, 2 for more verbose, and 3 for debug',
-      type: 'count'
-    },
-    q: {
-      alias: 'quiet',
-      demand: false,
-      describe: 'Suppress all output',
-      type: 'boolean'
+  global: {
+    options: {
+      v: {
+        alias: 'verbose',
+        demand: false,
+        describe: 'Output verbosity: 1 for normal, 2 for more verbose, and 3 for debug',
+        type: 'count'
+      },
+      q: {
+        alias: 'quiet',
+        demand: false,
+        describe: 'Suppress all output',
+        type: 'boolean'
+      }
     }
   }
 };
@@ -338,7 +347,7 @@ for (let i = 0; i < config.commands.length; i++) {
   yargs.command(command.command, command.description, (yargs, argv) => {
     argv = yargs.usage(`\nUsage: ${command.command} ${command.usage}`)
       .options(command.options)
-      .options(config.globalFlags)
+      .options(config.global.options)
       .help('help')
       .alias('h', 'help')
       .strict()
@@ -354,20 +363,20 @@ for (let i = 0; i < config.commands.length; i++) {
       Command.VERBOSE_LEVEL = -1;
     }
 
-    var Cmd = require(command.file);
+    let Cmd = require(command.file);
     new Cmd({offline: false}).execute(argv._.slice(1), argv);
   });
 }
 
 var argv = yargs
-  .usage(`\nUsage: command [options] [arguments]`)
+  .usage(`${banner}\nUsage: clouddrive command [options] [arguments]`)
   .version(function() {
     return `v${pkgJson.version}`;
   })
   .alias('V', 'version')
   .help('h')
   .alias('h', 'help')
-  .options(config.globalFlags)
+  .options(config.global.options)
   .epilog(`Copyright ${new Date().getFullYear()}`)
   .strict()
   .argv;
