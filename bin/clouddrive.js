@@ -84,6 +84,12 @@ var config = {
           demand: false,
           describe: 'Specify the remote node by its ID instead of path',
           type: 'boolean'
+        },
+        d: {
+          alias: 'dimensions',
+          demand: false,
+          describe: 'Maximum width or height (if image)',
+          type: 'string'
         }
       },
       file: '../lib/Commands/DownloadCommand'
