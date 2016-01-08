@@ -157,6 +157,13 @@ var config = {
       file: '../lib/Commands/ListCommand'
     },
     {
+      command: 'mount',
+      usage: '[options]',
+      description: 'Mount Cloud Drive',
+      options: {},
+      file: '../lib/Commands/MountCommand'
+    },
+    {
       command: 'pending',
       usage: '[options]',
       description: 'List the nodes that have a status of "PENDING"',
