@@ -10,12 +10,17 @@ All Notable changes to `clouddrive-node` will be documented in this file
 - Refactored the entire codebase to use several ES6 features including classes, template strings, arrow function notations, etc.
 - Failed uploads due to expired tokens now retry `x` number of times (set in the config).
 - Converted base CLI framework from `commander` to `yargs`.
+- `sync` function now accepts parameters (i.e., `chunkSize`, `maxNodes`)
+- Incomplete downloads now have file prefix (`.__incomplete`)
+- Can now specify dimensions when downloading images
+- More color information on listings output (red = in trash, yellow = pending)
 
 ### Fixed
 - `download` command no longer outputs multiple "failure" messages when it fails to download remote file.
 - Fixed authorization renewal issue where we weren't properly checking of the API key OR secret were both invalid.
 - Fixed exception when attempting to upload to `root` without any notation (empty path).
 - Fixed bug where we were not properly reading boolean values from the saved config.
+- All `async` operations now properly pass up their errors
 
 ## 0.2.2
 
