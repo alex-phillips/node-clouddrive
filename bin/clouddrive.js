@@ -24,354 +24,332 @@ try {
 }
 
 var config = {
-  commands: [
-    {
-      command: 'cat',
+  commands: {
+    cat: {
       usage: '[options] <path>',
-      description: 'Print files to STDOUT',
+      desc: 'Print files to STDOUT',
       options: {
         i: {
           alias: 'id',
           demand: false,
-          describe: 'Specify the remote node by its ID instead of path',
+          desc: 'Specify the remote node by its ID instead of path',
           type: 'boolean'
         }
       },
       file: '../lib/Commands/CatCommand'
     },
-    {
-      command: 'clearcache',
+    clearcache: {
       usage: '[options]',
-      description: 'Clear the local cache',
+      desc: 'Clear the local cache',
       options: {},
       file: '../lib/Commands/ClearCacheCommand'
     },
-    {
-      command: 'config',
+    config: {
       usage: '[options] [key] [value]',
-      description: 'Read, write, and reset config values',
+      desc: 'Read, write, and reset config values',
       options: {
         r: {
           alias: 'reset',
           demand: false,
-          describe: 'Reset the config option to its default value',
+          desc: 'Reset the config option to its default value',
           type: 'boolean'
         }
       },
       file: '../lib/Commands/ConfigCommand'
     },
-    {
-      command: 'du',
+    du: {
       usage: '[options] [path]',
-      description: 'Display the disk usage (recursively) for the specified node',
+      desc: 'Display the disk usage (recursively) for the specified node',
       options: {
         i: {
           alias: 'id',
           demand: false,
-          describe: 'Specify the remote node by its ID instead of path',
+          desc: 'Specify the remote node by its ID instead of path',
           type: 'boolean'
         }
       },
       file: '../lib/Commands/DiskUsageCommand'
     },
-    {
-      command: 'download',
+    download: {
       usage: '[options] <src> [dest]',
-      description: 'Download remote file or folder to specified local path',
+      desc: 'Download remote file or folder to specified local path',
       options: {
         i: {
           alias: 'id',
           demand: false,
-          describe: 'Specify the remote node by its ID instead of path',
+          desc: 'Specify the remote node by its ID instead of path',
           type: 'boolean'
         },
         d: {
           alias: 'dimensions',
           demand: false,
-          describe: 'Maximum width or height (if image)',
+          desc: 'Maximum width or height (if image)',
           type: 'string'
         }
       },
       file: '../lib/Commands/DownloadCommand'
     },
-    {
-      command: 'find',
+    find: {
       usage: '[options] <query>',
-      description: 'Find nodes that contains a given string',
+      desc: 'Find nodes that contains a given string',
       options: {
         t: {
           alias: 'time',
           demand: false,
-          describe: 'Sort nodes by modified time',
+          desc: 'Sort nodes by modified time',
           type: 'boolean'
         }
       },
       file: '../lib/Commands/FindCommand'
     },
-    {
-      command: 'info',
+    info: {
       usage: '[options]',
-      description: 'Show Cloud Drive account info',
+      desc: 'Show Cloud Drive account info',
       options: {},
       file: '../lib/Commands/InfoCommand'
     },
-    {
-      command: 'init',
+    init: {
       usage: '[options]',
-      description: 'Initialize and authorize with Amazon Cloud Drive',
+      desc: 'Initialize and authorize with Amazon Cloud Drive',
       options: {},
       file: '../lib/Commands/InitCommand'
     },
-    {
-      command: 'link',
+    link: {
       usage: '[options] <path>',
-      description: 'Generate a temporary, pre-authenticated download link',
+      desc: 'Generate a temporary, pre-authenticated download link',
       options: {
         i: {
           alias: 'id',
           demand: false,
-          describe: 'Specify the remote node by its ID instead of path',
+          desc: 'Specify the remote node by its ID instead of path',
           type: 'boolean'
         }
       },
       file: '../lib/Commands/LinkCommand'
     },
-    {
-      command: 'ls',
+    ls: {
       usage: '[options] [path]',
-      description: 'List all remote nodes belonging to a specified node',
+      desc: 'List all remote nodes belonging to a specified node',
       options: {
         i: {
           alias: 'id',
           demand: false,
-          describe: 'Specify the remote node by its ID instead of path',
+          desc: 'Specify the remote node by its ID instead of path',
           type: 'boolean'
         },
         t: {
           alias: 'time',
           demand: false,
-          describe: 'Sort nodes by modified time',
+          desc: 'Sort nodes by modified time',
           type: 'boolean'
         }
       },
       file: '../lib/Commands/ListCommand'
     },
-    {
-      command: 'pending',
+    pending: {
       usage: '[options]',
-      description: 'List the nodes that have a status of "PENDING"',
+      desc: 'List the nodes that have a status of "PENDING"',
       options: {
         t: {
           alias: 'time',
           demand: false,
-          describe: 'Sort nodes by modified time',
+          desc: 'Sort nodes by modified time',
           type: 'boolean'
         }
       },
       file: '../lib/Commands/ListPendingCommand'
     },
-    {
-      command: 'trash',
+    trash: {
       usage: '[options]',
-      description: 'List the nodes that have a status of "TRASH"',
+      desc: 'List the nodes that have a status of "TRASH"',
       options: {
         t: {
           alias: 'time',
           demand: false,
-          describe: 'Sort nodes by modified time',
+          desc: 'Sort nodes by modified time',
           type: 'boolean'
         }
       },
       file: '../lib/Commands/ListTrashCommand'
     },
-    {
-      command: 'metadata',
+    metadata: {
       usage: '[options] [path]',
-      description: 'Retrieve metadata of a node by its path',
+      desc: 'Retrieve metadata of a node by its path',
       options: {
         i: {
           alias: 'id',
           demand: false,
-          describe: 'Specify the remote node by its ID instead of path',
+          desc: 'Specify the remote node by its ID instead of path',
           type: 'boolean'
         }
       },
       file: '../lib/Commands/MetadataCommand'
     },
-    {
-      command: 'mkdir',
+    mkdir: {
       usage: '[options] <path>',
-      description: 'Create a remote directory path (recursively)',
+      desc: 'Create a remote directory path (recursively)',
       options: {},
       file: '../lib/Commands/MkdirCommand'
     },
-    {
-      command: 'mv',
+    mv: {
       usage: '[options] <path> [new_path]',
-      description: 'Move a remote node to a new directory',
+      desc: 'Move a remote node to a new directory',
       options: {
         i: {
           alias: 'id',
           demand: false,
-          describe: 'Specify the remote node by its ID instead of path',
+          desc: 'Specify the remote node by its ID instead of path',
           type: 'boolean'
         }
       },
       file: '../lib/Commands/MoveCommand'
     },
-    {
-      command: 'quota',
+    quota: {
       usage: '[options]',
-      description: 'Show Cloud Drive account quota',
+      desc: 'Show Cloud Drive account quota',
       options: {},
       file: '../lib/Commands/QuotaCommand'
     },
-    {
-      command: 'rename',
+    rename: {
       usage: '[options] <path> <name>',
-      description: 'Rename a remote node',
+      desc: 'Rename a remote node',
       options: {
         i: {
           alias: 'id',
           demand: false,
-          describe: 'Specify the remote node by its ID instead of path',
+          desc: 'Specify the remote node by its ID instead of path',
           type: 'boolean'
         }
       },
       file: '../lib/Commands/RenameCommand'
     },
-    {
-      command: 'resolve',
+    resolve: {
       usage: '[options] <id>',
-      description: 'Return the remote path of a node by its ID',
+      desc: 'Return the remote path of a node by its ID',
       options: {},
       file: '../lib/Commands/ResolveCommand'
     },
-    {
-      command: 'restore',
+    restore: {
       usage: '[options] <path>',
-      description: 'Restore a remote node from the trash',
+      desc: 'Restore a remote node from the trash',
       options: {
         i: {
           alias: 'id',
           demand: false,
-          describe: 'Specify the remote node by its ID instead of path',
+          desc: 'Specify the remote node by its ID instead of path',
           type: 'boolean'
         }
       },
       file: '../lib/Commands/RestoreCommand'
     },
-    {
-      command: 'sync',
+    sync: {
       usage: '[options]',
-      description: 'Sync the local cache with Amazon Cloud Drive',
+      desc: 'Sync the local cache with Amazon Cloud Drive',
       options: {},
       file: '../lib/Commands/SyncCommand'
     },
-    {
-      command: 'rm',
+    rm: {
       usage: '[options] <path>',
-      description: 'Move a remote Node to the trash',
+      desc: 'Move a remote Node to the trash',
       options: {
         i: {
           alias: 'id',
           demand: false,
-          describe: 'Specify the remote node by its ID instead of path',
+          desc: 'Specify the remote node by its ID instead of path',
           type: 'boolean'
         }
       },
       file: '../lib/Commands/TrashCommand'
     },
-    {
-      command: 'tree',
+    tree: {
       usage: '[options] [path]',
-      description: 'Print directory tree of the given node',
+      desc: 'Print directory tree of the given node',
       options: {
         i: {
           alias: 'id',
           demand: false,
-          describe: 'Specify the remote node by its ID instead of path',
+          desc: 'Specify the remote node by its ID instead of path',
           type: 'boolean'
         },
         a: {
           alias: 'assets',
           demand: false,
-          describe: 'Include ASSET nodes',
+          desc: 'Include ASSET nodes',
           type: 'boolean'
         },
         m: {
           alias: 'markdown',
           demand: false,
-          describe: 'Output tree in markdown',
+          desc: 'Output tree in markdown',
           type: 'boolean'
         }
       },
       file: '../lib/Commands/TreeCommand'
     },
-    {
-      command: 'upload',
+    upload: {
       usage: '[options] <src...> <dest>',
-      description: 'Upload local file or folder to remote directory',
+      desc: 'Upload local file or folder to remote directory',
       options: {
         o: {
           alias: 'overwrite',
           demand: false,
-          describe: 'Overwrite the remote file if it already exists',
+          desc: 'Overwrite the remote file if it already exists',
           type: 'boolean'
         }
       },
       file: '../lib/Commands/UploadCommand'
     },
-    {
-      command: 'usage',
+    usage: {
       usage: '[options]',
-      description: 'Show Cloud Drive account usage',
+      desc: 'Show Cloud Drive account usage',
       options: {},
       file: '../lib/Commands/UsageCommand'
     }
-  ],
+  },
   global: {
     options: {
       v: {
         alias: 'verbose',
         demand: false,
-        describe: 'Output verbosity: 1 for normal, 2 for more verbose, and 3 for debug',
+        desc: 'Output verbosity: 1 for normal, 2 for more verbose, and 3 for debug',
         type: 'count'
       },
       q: {
         alias: 'quiet',
         demand: false,
-        describe: 'Suppress all output',
+        desc: 'Suppress all output',
         type: 'boolean'
       }
     }
   }
 };
 
-for (let i = 0; i < config.commands.length; i++) {
-  let command = config.commands[i];
-  yargs.command(command.command, command.description, (yargs, argv) => {
-    argv = yargs.usage(`\nUsage: ${command.command} ${command.usage}`)
-      .options(command.options)
-      .options(config.global.options)
-      .help('help')
-      .alias('h', 'help')
-      .strict()
-      .fail((message) => {
-        yargs.showHelp();
-        Command.error(message);
-        process.exit(1);
-      })
-      .argv;
+for (let name in config.commands) {
+  if (config.commands.hasOwnProperty(name)) {
+    let command = config.commands[name];
+    yargs.command(name, command.desc, (yargs, argv) => {
+      argv = yargs.usage(`\nUsage: ${name} ${command.usage}`)
+        .options(command.options)
+        .options(config.global.options)
+        .help('help')
+        .alias('h', 'help')
+        .strict()
+        .fail((message) => {
+          yargs.showHelp();
+          Command.error(message);
+          process.exit(1);
+        })
+        .argv;
 
-    Command.VERBOSE_LEVEL = argv.verbose;
-    if (argv.quiet) {
-      Command.VERBOSE_LEVEL = -1;
-    }
+      Command.VERBOSE_LEVEL = argv.verbose;
+      if (argv.quiet) {
+        Command.VERBOSE_LEVEL = -1;
+      }
 
-    let Cmd = require(command.file);
-    new Cmd({offline: false}).execute(argv._.slice(1), argv);
-  });
+      let Cmd = require(command.file);
+      new Cmd({offline: false}).execute(argv._.slice(1), argv);
+    });
+  }
 }
 
 var argv = yargs
@@ -389,4 +367,10 @@ var argv = yargs
 
 if (!argv._[0]) {
   yargs.showHelp();
+} else {
+  if (!config.commands[argv._[0]]) {
+    yargs.showHelp();
+    Command.error(`Invalid command: ${argv._[0]}`);
+    process.exit(1);
+  }
 }
