@@ -14,6 +14,8 @@ All Notable changes to `clouddrive-node` will be documented in this file
 - Incomplete downloads now have file prefix (`.__incomplete`)
 - Can now specify dimensions when downloading images
 - More color information on listings output (red = in trash, yellow = pending)
+- Added `config` option to toggle ANSI colors
+- Added `config` option to toggle display of progress bars
 
 ### Fixed
 - `download` command no longer outputs multiple "failure" messages when it fails to download remote file.
