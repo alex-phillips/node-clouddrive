@@ -374,11 +374,6 @@ for (let name in config.commands) {
   if (config.commands.hasOwnProperty(name)) {
     let command = config.commands[name];
     yargs.command(name, command.desc, (yargs, argv) => {
-      // Fix to remove groups added by global app (below)
-      // until `yargs` fixes issue of not deleting groups on reset
-      var groups = yargs.getGroups();
-      Object.keys(groups).forEach(group => delete groups[group]);
-
       argv = yargs.usage(`\nUsage: ${name} ${command.usage}`)
         .options(command.options)
         .help('help')
