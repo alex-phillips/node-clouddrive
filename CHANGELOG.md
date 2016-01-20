@@ -2,7 +2,7 @@
 
 All Notable changes to `clouddrive-node` will be documented in this file
 
-## 0.2.3
+## 0.3.0
 
 ### Added
 - `cat` command outputs contents of remote file to STDOUT.
@@ -16,6 +16,7 @@ All Notable changes to `clouddrive-node` will be documented in this file
 - More color information on listings output (red = in trash, yellow = pending)
 - Added `config` option to toggle ANSI colors
 - Added `config` option to toggle display of progress bars
+- `Config` is now it's own object and separated from the `Command` class
 
 ### Fixed
 - `download` command no longer outputs multiple "failure" messages when it fails to download remote file.

@@ -4,6 +4,7 @@
 var yargs = require('yargs'),
   colors = require('colors'),
   Command = require('../lib/Commands/Command'),
+  Config = require('../lib/Config'),
   semver = require('semver'),
   pkgJson = require('../package.json'),
   banner = `_________ .__                   .___ ________        .__
@@ -12,7 +13,7 @@ var yargs = require('yargs'),
 \\     \\___|  |_(  <_> )  |  / /_/ |   |    \`   \\  | \\/  |\\   /\\  ___/
  \\______  /____/\\____/|____/\\____ |  /_______  /__|  |__| \\_/  \\___  >
         \\/                       \\/          \\/                    \\/
-`.green;
+`;
 
 try {
   if (semver.lt(process.version.replace('v', ''), '4.0.0')) {
@@ -356,7 +357,7 @@ var config = {
         group: 'Global Flags:',
         alias: 'verbose',
         demand: false,
-        desc: 'Output verbosity: 1 for normal, 2 for more verbose, and 3 for debug',
+        desc: 'Output verbosity: 1 for normal (-v), 2 for more verbose (-vv), and 3 for debug (-vvv)',
         type: 'count'
       },
       q: {
@@ -370,6 +371,11 @@ var config = {
   }
 };
 
+var appConfig = new Config(Command.getConfigPath());
+if (!appConfig.get('cli.colors')) {
+  colors.enabled = false;
+}
+
 for (let name in config.commands) {
   if (config.commands.hasOwnProperty(name)) {
     let command = config.commands[name];
@@ -380,11 +386,12 @@ for (let name in config.commands) {
         .alias('h', 'help')
         .group('h', 'Global Flags:')
         .options(config.global.options)
+        .wrap(yargs.terminalWidth())
         .strict()
         .fail((message) => {
           yargs.showHelp();
           Command.error(message);
-          process.exit(1);
+          Command.shutdown(1);
         })
         .argv;
 
@@ -394,13 +401,13 @@ for (let name in config.commands) {
       }
 
       let Cmd = require(command.file);
-      new Cmd({offline: command.offline}).execute(argv._.slice(1), argv);
+      new Cmd({offline: command.offline}, appConfig).execute(argv._.slice(1), argv);
     });
   }
 }
 
 var argv = yargs
-  .usage(`${banner}\nUsage: clouddrive command [flags] [options] [arguments]`)
+  .usage(`${banner.green}\nUsage: clouddrive command [flags] [options] [arguments]`)
   .version(function() {
     return `v${pkgJson.version}`;
   })
@@ -410,8 +417,14 @@ var argv = yargs
   .alias('h', 'help')
   .group('h', 'Global Flags:')
   .options(config.global.options)
+  .wrap(yargs.terminalWidth())
   .epilog(`Copyright ${new Date().getFullYear()}`)
   .strict()
+  .fail((message) => {
+    yargs.showHelp();
+    Command.error(message);
+    Command.shutdown(1);
+  })
   .argv;
 
 if (!argv._[0]) {
@@ -420,6 +433,6 @@ if (!argv._[0]) {
   if (!config.commands[argv._[0]]) {
     yargs.showHelp();
     Command.error(`Invalid command: ${argv._[0]}`);
-    process.exit(1);
+    Command.shutdown(1);
   }
 }
