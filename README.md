@@ -33,7 +33,7 @@ $ clouddrive config email me@example.com
 email saved
 ```
 
-You will need to set the `email` for the Amazon account you wish to use with the CLI. The first run of the application will require you to run `clouddrive `init` to authorize the CLI with your Amazon account. This will open a browser and take you to amazon for authorization. After authorization, your access token will be printed in the browser. Simply copy and paste this back into the terminal.
+You will need to set the `email` for the Amazon account you wish to use with the CLI. The first run of the application will require you to run `clouddrive init` to authorize the CLI with your Amazon account. This will open a browser and take you to Amazon for authorization. After authorization, your access token will be printed in the browser. Simply copy and paste this back into the terminal.
 
 Optionally, if you'd like to use your own Amazon Cloud Drive credentials, set the `client-id` and `client-secret` options using the `config` command.
 
