@@ -99,6 +99,13 @@ var config = {
       },
       file: '../lib/Commands/DownloadCommand'
     },
+    exists: {
+      offline: true,
+      usage: '[flags] <src...> <dest>',
+      desc: 'Check if a file or folder exists remotely',
+      options: {},
+      file: '../lib/Commands/ExistsCommand'
+    },
     find: {
       offline: true,
       usage: '[flags] <query>',
