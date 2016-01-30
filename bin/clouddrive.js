@@ -102,7 +102,7 @@ var config = {
     find: {
       offline: true,
       usage: '[flags] <query>',
-      desc: 'Find nodes that contains a given string',
+      desc: 'Search for nodes by name',
       options: {
         t: {
           group: 'Flags:',
@@ -385,7 +385,6 @@ for (let name in config.commands) {
         .alias('h', 'help')
         .group('h', 'Global Flags:')
         .options(config.global.options)
-        .wrap(yargs.terminalWidth())
         .strict()
         .fail((message) => {
           yargs.showHelp();
@@ -416,7 +415,6 @@ var argv = yargs
   .alias('h', 'help')
   .group('h', 'Global Flags:')
   .options(config.global.options)
-  .wrap(yargs.terminalWidth())
   .epilog(`Copyright ${new Date().getFullYear()}`)
   .strict()
   .fail((message) => {
