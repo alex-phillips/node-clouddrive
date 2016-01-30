@@ -24,6 +24,7 @@ All Notable changes to `clouddrive-node` will be documented in this file
 - Fixed exception when attempting to upload to `root` without any notation (empty path).
 - Fixed bug where we were not properly reading boolean values from the saved config.
 - All `async` operations now properly pass up their errors
+- A file `Node` will automatically be overwritten on upload if its status is `PENDING` 
 
 ## 0.2.2
 
