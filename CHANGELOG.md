@@ -5,10 +5,10 @@ All Notable changes to `clouddrive-node` will be documented in this file
 ## 0.3.0
 
 ### Added
-- `cat` command outputs contents of remote file to STDOUT.
-- Added "searching" spinner when running `find` command.
-- Refactored the entire codebase to use several ES6 features including classes, template strings, arrow function notations, etc.
-- Failed uploads due to expired tokens now retry `x` number of times (set in the config).
+- `cat` command outputs contents of remote file to STDOUT
+- Added "searching" spinner when running `find` command
+- Refactored the entire codebase to use several ES6 features including classes, template strings, arrow function notations, etc
+- Failed uploads due to expired tokens now retry `x` number of times (set in the config)
 - Converted base CLI framework from `commander` to `yargs`.
 - `sync` function now accepts parameters (i.e., `chunkSize`, `maxNodes`)
 - Incomplete downloads now have file prefix (`.__incomplete`)
@@ -17,14 +17,16 @@ All Notable changes to `clouddrive-node` will be documented in this file
 - Added `config` option to toggle ANSI colors
 - Added `config` option to toggle display of progress bars
 - `Config` is now it's own object and separated from the `Command` class
+- Added a `force` flag on file upload to overwrite remote node's contents even if the MD5 matches the local file
 
 ### Fixed
-- `download` command no longer outputs multiple "failure" messages when it fails to download remote file.
-- Fixed authorization renewal issue where we weren't properly checking of the API key OR secret were both invalid.
+- `download` command no longer outputs multiple "failure" messages when it fails to download remote file
+- Fixed authorization renewal issue where we weren't properly checking of the API key OR secret were both invalid
 - Fixed exception when attempting to upload to `root` without any notation (empty path).
 - Fixed bug where we were not properly reading boolean values from the saved config.
 - All `async` operations now properly pass up their errors
-- A file `Node` will automatically be overwritten on upload if its status is `PENDING` 
+- A file `Node` will automatically be overwritten on upload if its status is `PENDING`
+- Node version check is now the first thing and with as few dependencies as possible
 
 ## 0.2.2
 
