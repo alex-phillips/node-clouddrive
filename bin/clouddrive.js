@@ -1,27 +1,30 @@
 #!/usr/bin/env node
 'use strict';
 
+var semver = require('semver'),
+  pkgJson = require('../package.json'),
+  colors = require('colors');
+
+try {
+  if (semver.lt(process.version.replace('v', ''), '4.0.0')) {
+    console.log(`${pkgJson.name.green}, CLI version ${pkgJson.version}`);
+    console.error('ERROR: Cloud Drive requires Node.js 4.0.0 or newer.'.white.bgRed);
+    console.error(`\nVisit ${'http://nodejs.org/'.cyan} to download a newer version.\n`);
+    process.exit(1);
+  }
+} catch (e) {
+}
+
 var yargs = require('yargs'),
-  colors = require('colors'),
   Command = require('../lib/Commands/Command'),
   Config = require('../lib/Config'),
-  semver = require('semver'),
-  pkgJson = require('../package.json'),
+  async = require('async'),
   banner = `   ________                __   ____       _
   / ____/ /___  __  ______/ /  / __ \\_____(_)   _____
  / /   / / __ \\/ / / / __  /  / / / / ___/ / | / / _ \\
 / /___/ / /_/ / /_/ / /_/ /  / /_/ / /  / /| |/ /  __/
 \\____/_/\\____/\\__,_/\\__,_/  /_____/_/  /_/ |___/\\___/
 `;
-
-try {
-  if (semver.lt(process.version.replace('v', ''), '4.0.0')) {
-    console.error(`${pkgJson.name.cyan.bold}, CLI version ${pkgJson.version}`);
-    Command.error('ERROR: Cloud Drive requires Node.js 4.0.0 or newer.');
-    Command.log(`\nVisit ${'http://nodejs.org/'.cyan} to download a newer version.\n`);
-  }
-} catch (e) {
-}
 
 var config = {
   commands: {
@@ -345,6 +348,13 @@ var config = {
           demand: false,
           desc: 'Overwrite the remote file if it already exists',
           type: 'boolean'
+        },
+        f: {
+          group: 'Flags:',
+          alias: 'force',
+          demand: false,
+          desc: 'Force a re-upload of the file even if the path and MD5 both match',
+          type: 'boolean'
         }
       },
       file: '../lib/Commands/UploadCommand'
@@ -382,61 +392,65 @@ if (!appConfig.get('cli.colors')) {
   colors.enabled = false;
 }
 
-for (let name in config.commands) {
-  if (config.commands.hasOwnProperty(name)) {
-    let command = config.commands[name];
-    yargs.command(name, command.desc, (yargs, argv) => {
-      argv = yargs.usage(`\nUsage: ${name} ${command.usage}`)
-        .options(command.options)
-        .help('help')
-        .alias('h', 'help')
-        .group('h', 'Global Flags:')
-        .options(config.global.options)
-        .strict()
-        .fail((message) => {
-          yargs.showHelp();
-          Command.error(message);
-          Command.shutdown(1);
-        })
-        .argv;
+async.forEachOfSeries(config.commands, (command, name, callback) => {
+  yargs.command(name, command.desc, (yargs, argv) => {
+    argv = yargs.usage(`\nUsage: ${name} ${command.usage}`)
+      .options(command.options)
+      .help('help')
+      .alias('h', 'help')
+      .group('h', 'Global Flags:')
+      .options(config.global.options)
+      .strict()
+      .fail((message) => {
+        yargs.showHelp();
+        Command.error(message);
+        Command.shutdown(1);
+      })
+      .argv;
 
-      Command.VERBOSE_LEVEL = argv.verbose;
-      if (argv.quiet) {
-        Command.VERBOSE_LEVEL = -1;
-      }
+    Command.VERBOSE_LEVEL = argv.verbose;
+    if (argv.quiet) {
+      Command.VERBOSE_LEVEL = -1;
+    }
 
-      let Cmd = require(command.file);
-      new Cmd({offline: command.offline}, appConfig).execute(argv._.slice(1), argv);
-    });
-  }
-}
+    var Cmd = require(command.file);
+    new Cmd({offline: command.offline}, appConfig).execute(argv._.slice(1), argv);
+  });
 
-var argv = yargs
-  .usage(`${banner.green}\nUsage: clouddrive command [flags] [options] [arguments]`)
-  .version(function() {
-    return `v${pkgJson.version}`;
-  })
-  .alias('V', 'version')
-  .group('V', 'Flags:')
-  .help('h')
-  .alias('h', 'help')
-  .group('h', 'Global Flags:')
-  .options(config.global.options)
-  .epilog(`Copyright ${new Date().getFullYear()}`)
-  .strict()
-  .fail((message) => {
-    yargs.showHelp();
-    Command.error(message);
-    Command.shutdown(1);
-  })
-  .argv;
-
-if (!argv._[0]) {
-  yargs.showHelp();
-} else {
-  if (!config.commands[argv._[0]]) {
-    yargs.showHelp();
-    Command.error(`Invalid command: ${argv._[0]}`);
+  callback();
+}, err => {
+  if (err) {
+    Command.error(err);
     Command.shutdown(1);
   }
-}
+
+  var argv = yargs
+    .usage(`${banner.green}\nUsage: clouddrive command [flags] [options] [arguments]`)
+    .version(function() {
+      return `v${pkgJson.version}`;
+    })
+    .alias('V', 'version')
+    .group('V', 'Flags:')
+    .help('h')
+    .alias('h', 'help')
+    .group('h', 'Global Flags:')
+    .options(config.global.options)
+    .epilog(`Copyright ${new Date().getFullYear()}`)
+    .strict()
+    .fail((message) => {
+      yargs.showHelp();
+      Command.error(message);
+      Command.shutdown(1);
+    })
+    .argv;
+
+  if (!argv._[0]) {
+    yargs.showHelp();
+  } else {
+    if (!config.commands[argv._[0]]) {
+      yargs.showHelp();
+      Command.error(`Invalid command: ${argv._[0]}`);
+      Command.shutdown(1);
+    }
+  }
+});
