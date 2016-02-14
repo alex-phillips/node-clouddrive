@@ -16,26 +16,31 @@ Before using the CLI, the config values for the application will need to be set.
 
 ```
 $ clouddrive config
-email             =
-client-id         =
-client-secret     =
-json.pretty       = false
-upload.duplicates = false
-database.driver   = sqlite
-database.host     = 127.0.0.1
-database.database = clouddrive
-database.username = root
-database.password =
-show.trash        = true
-show.pending      = true
+auth.email           =
+auth.id              =
+auth.secret          =
+cli.colors           = true
+cli.progressBars     = true
+database.driver      = sqlite
+database.host        = 127.0.0.1
+database.database    = clouddrive
+database.username    = root
+database.password    =
+display.date         = modified
+display.showPending  = true
+display.showTrash    = true
+download.checkMd5    = true
+json.pretty          = false
+upload.duplicates    = false
+upload.retryAttempts = 1
 
-$ clouddrive config email me@example.com
+$ clouddrive config auth.email me@example.com
 email saved
 ```
 
 You will need to set the `email` for the Amazon account you wish to use with the CLI. The first run of the application will require you to run `clouddrive init` to authorize the CLI with your Amazon account. This will open a browser and take you to Amazon for authorization. After authorization, your access token will be printed in the browser. Simply copy and paste this back into the terminal.
 
-Optionally, if you'd like to use your own Amazon Cloud Drive credentials, set the `client-id` and `client-secret` options using the `config` command.
+Optionally, if you'd like to use your own Amazon Cloud Drive credentials, set the `auth.client-id` and `auth.client-secret` options using the `config` command.
 
 ```
 $ clouddrive init
@@ -60,53 +65,62 @@ $ clouddrive sync
 The CLI makes interacting with Cloud Drive feel like using a remote filesystem with commands such as `ls`, `du`, `mkdir`, etc.
 
 ```
-Usage: clouddrive [options] [command]
-
+Usage: clouddrive command [flags] [options] [arguments]
 
 Commands:
+  cat         Print files to STDOUT
+  clearcache  Clear the local cache
+  config      Read, write, and reset config values
+  du          Display the disk usage (recursively) for the specified node
+  download    Download remote file or folder to specified local path
+  exists      Check if a file or folder exists remotely
+  find        Search for nodes by name
+  info        Show Cloud Drive account info
+  init        Initialize and authorize with Amazon Cloud Drive
+  link        Generate a temporary, pre-authenticated download link
+  ls          List all remote nodes belonging to a specified node
+  pending     List the nodes that have a status of "PENDING"
+  trash       List the nodes that have a status of "TRASH"
+  metadata    Retrieve metadata of a node by its path
+  mkdir       Create a remote directory path (recursively)
+  mv          Move a remote node to a new directory
+  quota       Show Cloud Drive account quota
+  rename      Rename a remote node
+  resolve     Return the remote path of a node by its ID
+  restore     Restore a remote node from the trash
+  sync        Sync the local cache with Amazon Cloud Drive
+  rm          Move a remote Node to the trash
+  tree        Print directory tree of the given node
+  upload      Upload local file(s) or folder(s) to remote directory
+  usage       Show Cloud Drive account usage
 
-    clearcache                       Clear the local cache
-    config [options] [key] [value]   Read, write, and remove config options
-    download [options] <src> [dest]  Download remote file or folder to specified local path
-    du [options] [path]              Display the disk usage (recursively) for the specified node
-    find [options] [query]           Find nodes that match a name (partials acceptable)
-    init                             Initialize and authorize with Amazon Cloud Drive
-    link [options] [remote_path]     Generate a temporary, pre-authenticated download link
-    ls [options] [remote_path]       List all remote nodes belonging to a specified node
-    metadata [options] [remotePath]  Retrieve metadata of a node by its path
-    mkdir <remote_path>              Create a remote directory path (recursively)
-    mv <remote_path> [new_path]      Move a remote node to a new directory
-    pending [options]                List the nodes that have a status of "PENDING"
-    quota                            Show Cloud Drive account quota
-    rename [options] <path> <name>   Rename a remote node
-    resolve <id>                     Return the remote path of a node by its ID
-    restore [options] <path>         Restore a remote node from the trash
-    rm [options] <path>              Move a remote Node to the trash
-    sync                             Sync the local cache with Amazon Cloud Drive
-    trash [options]                  List all nodes in the trash
-    tree [options] [remote_path]     Print directory tree of the given node
-    upload [options] <src> [dest]    Upload local file or folder to remote directory
-    usage                            Show Cloud Drive account usage
+Flags:
+  -V, --version  Show version number                                   [boolean]
 
-Options:
-
-    -h, --help     output usage information
-    -V, --version  output the version number
+Global Flags:
+  -h, --help     Show help                                             [boolean]
+  -v, --verbose  Output verbosity: 1 for normal (-v), 2 for more verbose (-vv),
+                 and 3 for debug (-vvv)                                  [count]
+  -q, --quiet    Suppress all output                                   [boolean]
 ```
 
 ### Config
 
 The `config` command is used for reading, writing, and resetting config values for the CLI. The following options are available:
-- `email`: The email to use with the CLI
-- `client-id`: Custom Amazon API credentials if you would like to use your own
-- `client-secret`: Custom Amazon API credentials if you would like to use your own
-- `json.pretty`: Any commands that generate JSON-displayed data will be formatted on output (`metadata`, `quota`, `usage`, etc.)
-- `upload.duplicates`: Allow multiple files with the same MD5 to exist in Cloud Drive
-- `database.driver`: Database type to use for the local cache (`sqlite`, `mysql`, `mongo`)
+- `auth.email`: The email to use with the CLI
+- `auth.id`: Custom Amazon API credentials if you would like to use your own
+- `auth.secret`: Custom Amazon API credentials if you would like to use your own
+- `cli.colors`: ANSI color output
+- `cli.progressBars`: Display or suppress progress bars
+- `database.driver`: Database type to use for the local cache (`sqlite`, `mysql`, or `mongo`)
 - `database.host`: Host/IP the database exists on (if not SQLite)
 - `database.database`: Database to use (MySQL)
 - `database.username`: Database username for authentication
 - `database.password`: Database password for authentication
-- `show.trash`: Display trashed nodes with the `ls` command
-- `show.pending`: Display pending nodes with the `ls` command
-
+- `display.date`: Display either `modified` or `created` date when listing nodes
+- `display.showPending`: Toggle displaying of `PENDING` nodes with `ls` command
+- `display.showTrash`: Toggle display of `TRASH` nodes with the `ls` command
+- `download.checkMd5`: Perform or suppress MD5 check when downloading files
+- `json.pretty`: Whether to format JSON output or not
+- `upload.duplicates`: Allow duplicate files to be uploaded to Cloud Drive
+- `upload.retryAttempt`: Number of attempts to upload a file
