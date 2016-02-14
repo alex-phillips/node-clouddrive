@@ -18,6 +18,7 @@ All Notable changes to `clouddrive-node` will be documented in this file
 - Added `config` option to toggle display of progress bars
 - `Config` is now it's own object and separated from the `Command` class
 - Added a `force` flag on file upload to overwrite remote node's contents even if the MD5 matches the local file
+- Added `config` option to bypass MD5 check when downloading files
 
 ### Fixed
 - `download` command no longer outputs multiple "failure" messages when it fails to download remote file
