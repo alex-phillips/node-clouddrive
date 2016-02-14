@@ -4,7 +4,7 @@
   "description": "Amazon Cloud Drive CLI and SDK",
   "repository": "alex-phillips/node-clouddrive",
   "bin": {
-    "clouddrive": "bin/clouddrive.js"
+    "clouddrive": "bin/clouddrive"
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -38,7 +38,9 @@
   },
   "main": "index.js",
   "devDependencies": {
+    "babel-preset-es2015": "^6.5.0",
     "gulp": "^3.9.0",
+    "gulp-babel": "^6.1.2",
     "gulp-jshint": "^1.11.2"
   }
 }

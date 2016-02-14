@@ -1,12 +1,12 @@
 module.exports = {
-  Account: require('./lib/Account'),
-  Node: require('./lib/Node'),
-  Config: require('./lib/Config'),
-  Utils: require('./lib/Utils'),
+  Account: require('./dist/Account'),
+  Node: require('./dist/Node'),
+  Config: require('./dist/Config'),
+  Utils: require('./dist/Utils'),
   Cache: {
-    Cache: require('./lib/Cache'),
-    SQLite: require('./lib/Cache/SQLite3'),
-    MySQL: require('./lib/Cache/MySQL'),
-    Mongo: require('./lib/Cache/Mongo')
+    Cache: require('./dist/Cache/Cache'),
+    SQLite: require('./dist/Cache/SQLite3'),
+    MySQL: require('./dist/Cache/MySQL'),
+    Mongo: require('./dist/Cache/Mongo')
   }
 };

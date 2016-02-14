@@ -1,0 +1,8 @@
+#!/usr/bin/env node
+'use strict';
+
+try {
+    require('../dist/cli');
+} catch (e) {
+    require('../lib/cli');
+}
