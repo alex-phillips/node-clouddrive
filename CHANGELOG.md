@@ -2,6 +2,14 @@
 
 All Notable changes to `clouddrive-node` will be documented in this file
 
+## 0.3.1
+
+### Added
+- Updated `yargs` package to version 4
+
+### Fixed
+- Now properly building `dist` code for `npm` distribution and including it (added `.npmignore`) when publishing
+
 ## 0.3.0
 
 ### Added
