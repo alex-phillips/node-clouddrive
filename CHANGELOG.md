@@ -2,6 +2,12 @@
 
 All Notable changes to `clouddrive-node` will be documented in this file
 
+## 0.3.2
+
+### Fixed
+- Failed file upload where response body is invalid now uses retry attempts to upload again
+- We now "force" reauthentication to Amazon in some cases even if our token hasn't expired
+
 ## 0.3.1
 
 ### Added
