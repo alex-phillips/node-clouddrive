@@ -2,6 +2,11 @@
 
 All Notable changes to `clouddrive-node` will be documented in this file
 
+## 0.3.3
+
+### Fixed
+- Default config for the `Config` object has been moved outside of the class file
+
 ## 0.3.2
 
 ### Fixed
