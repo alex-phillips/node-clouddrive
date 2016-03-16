@@ -4,6 +4,9 @@ All Notable changes to `clouddrive-node` will be documented in this file
 
 ## 0.3.3
 
+### Added
+- `sync` commands `chunkSize` and `maxNodes` options are not configurable via the `config` command
+
 ### Fixed
 - Default config for the `Config` object has been moved outside of the class file
 
