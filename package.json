@@ -34,7 +34,7 @@
     "progress": "git://github.com/alex-phillips/node-progress.git#feature/no-print",
     "request": "^2.61.0",
     "semver": "^5.1.0",
-    "sqlite3": "^3.1.1",
+    "sqlite3": "^3.1.4",
     "yargs": "^4.1.0"
   },
   "main": "index.js",
