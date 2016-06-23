@@ -6,9 +6,13 @@ All Notable changes to `clouddrive-node` will be documented in this file
 
 ### Added
 - `sync` commands `chunkSize` and `maxNodes` options are not configurable via the `config` command
+- `exists` command recursively checks local directory to check if the files exist remotely without uploading any new files
+- `link` and `unlink` commands can be used to add a node or remove it from a parent (the old `link` command is now `share`)
+- Some functionality is now optionally `remote` (such as `getChildren` and `getTrash`) that can go to the API rather than relying on the local cache
 
 ### Fixed
 - Default config for the `Config` object has been moved outside of the class file
+- `rm` and `restore` commands now have a recursive option to delete all children nodes
 
 ## 0.3.2
 
