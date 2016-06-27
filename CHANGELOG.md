@@ -2,6 +2,16 @@
 
 All Notable changes to `clouddrive-node` will be documented in this file
 
+## 0.5.0
+
+### Breaking Changes
+- `cache` and `config` directories are now stored using the [env-paths](https://github.com/sindresorhus/env-paths) package. NOTE: you will need to either manually move your existing files or re-run `init` and `sync` with this new version.
+
+### Fixed
+- `request` library has been swapped out for `got`
+- `colors` has been swapped out for `chalk`
+- `unlink` command now requires child ID since constructing the path of a node with multiple parents is currently only returning one path
+
 ## 0.4.0
 
 ### Added
