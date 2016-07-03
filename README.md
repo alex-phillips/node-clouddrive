@@ -20,7 +20,9 @@ auth.email           =
 auth.id              =
 auth.secret          =
 cli.colors           = true
+cli.ignoreFiles      = ^(\.DS_Store|[Tt]humbs.db)$
 cli.progressBars     = true
+cli.progressInterval = 1000
 database.driver      = sqlite
 database.host        = 127.0.0.1
 database.database    = clouddrive
@@ -31,8 +33,11 @@ display.showPending  = true
 display.showTrash    = true
 download.checkMd5    = true
 json.pretty          = false
+log.level            = 0
+sync.chunkSize       =
+sync.maxNodes        =
 upload.duplicates    = false
-upload.retryAttempts = 1
+upload.numRetries    = 1
 
 $ clouddrive config auth.email me@example.com
 email saved
@@ -71,37 +76,37 @@ Commands:
   cat         Print files to STDOUT
   clearcache  Clear the local cache
   config      Read, write, and reset config values
-  du          Display the disk usage (recursively) for the specified node
   download    Download remote file or folder to specified local path
+  du          Display the disk usage (recursively) for the specified node
   exists      Check if a file or folder exists remotely
   find        Search for nodes by name
   info        Show Cloud Drive account info
   init        Initialize and authorize with Amazon Cloud Drive
-  link        Generate a temporary, pre-authenticated download link
+  link        Link a file to exist under another directory
   ls          List all remote nodes belonging to a specified node
-  pending     List the nodes that have a status of "PENDING"
-  trash       List the nodes that have a status of "TRASH"
   metadata    Retrieve metadata of a node by its path
   mkdir       Create a remote directory path (recursively)
   mv          Move a remote node to a new directory
+  pending     List the nodes that have a status of "PENDING"
   quota       Show Cloud Drive account quota
   rename      Rename a remote node
   resolve     Return the remote path of a node by its ID
   restore     Restore a remote node from the trash
-  sync        Sync the local cache with Amazon Cloud Drive
   rm          Move a remote Node to the trash
+  share       Generate a temporary, pre-authenticated download link
+  sync        Sync the local cache with Amazon Cloud Drive
+  trash       List the nodes that have a status of "TRASH"
   tree        Print directory tree of the given node
+  unlink      Unlink a node from a parent node
   upload      Upload local file(s) or folder(s) to remote directory
   usage       Show Cloud Drive account usage
-
-Flags:
-  -V, --version  Show version number                                   [boolean]
 
 Global Flags:
   -h, --help     Show help                                             [boolean]
   -v, --verbose  Output verbosity: 1 for normal (-v), 2 for more verbose (-vv),
                  and 3 for debug (-vvv)                                  [count]
   -q, --quiet    Suppress all output                                   [boolean]
+  -V, --version  Show version number                                   [boolean]
 ```
 
 ### Config
