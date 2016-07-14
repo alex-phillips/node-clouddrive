@@ -13,6 +13,7 @@ All Notable changes to `clouddrive-node` will be documented in this file
 - `colors` has been swapped out for `chalk`
 - `unlink` command now requires child ID since constructing the path of a node with multiple parents is currently only returning one path
 - `exists` command can now check for individual files, not just directories
+- Changed `appConfig` to `cliConfig` and `defaultConfig` to `appConfig` in `cli.js` (makes more sense)
 
 ## 0.4.0
 
