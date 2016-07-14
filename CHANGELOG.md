@@ -12,6 +12,7 @@ All Notable changes to `clouddrive-node` will be documented in this file
 - `request` library has been swapped out for `got`
 - `colors` has been swapped out for `chalk`
 - `unlink` command now requires child ID since constructing the path of a node with multiple parents is currently only returning one path
+- `exists` command can now check for individual files, not just directories
 
 ## 0.4.0
 
