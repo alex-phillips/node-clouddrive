@@ -9,6 +9,8 @@ All Notable changes to `clouddrive-node` will be documented in this file
 - Upload can check and detect existing files based on their paths and a file's size instead of MD5 checks (which can a long time). This is toggled in the config.
 - Now using events to trigger events instead of passing in callbacks everywhere (download, upload, overwrite, etc.)
 - Now using custom progress bar since others were either broken in some way or no longer maintained
+- `UploadCommand` now supports the `--checksum` option in addition to the default config value
+- `delete-everything` command now used to delete all CLI files and folders
 
 ### Breaking Changes
 - `cache` and `config` directories are now stored using the [env-paths](https://github.com/sindresorhus/env-paths) package. NOTE: you will need to either manually move your existing files or re-run `init` and `sync` with this new version.
