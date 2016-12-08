@@ -2,6 +2,12 @@
 
 All Notable changes to `clouddrive-node` will be documented in this file
 
+## 0.6.0
+
+### Added
+- `upload` command now supports `--labels`
+- New `update` command lets you update a node's labels and description
+
 ## 0.5.0
 
 ### Added
