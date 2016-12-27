@@ -103,6 +103,7 @@ Commands:
   sync               Sync the local cache with Amazon Cloud Drive
   trash              List the nodes that have a status of "TRASH"
   tree               Print directory tree of the given node
+  update             Update a node's metadata
   unlink             Unlink a node from a parent node
   upload             Upload local file(s) or folder(s) to remote directory
   usage              Show Cloud Drive account usage

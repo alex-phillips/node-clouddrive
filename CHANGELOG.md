@@ -2,6 +2,15 @@
 
 All Notable changes to `clouddrive-node` will be documented in this file
 
+## 0.6.0
+
+### Added
+- `upload` command now supports `--labels`
+- New `update` command lets you update a node's labels and description
+- Added support for encrypting / decrypting file names and contents on upload/download
+- Added `encrypt` and `decrypt` commands for encrypting/decrypting files locally using the same method as uploading/downloading
+- Now supports concurrent upload/download connections
+
 ## 0.5.0
 
 ### Added

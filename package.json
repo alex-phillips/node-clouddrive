@@ -24,6 +24,7 @@
   "license": "ISC",
   "dependencies": {
     "async": "^1.5.2",
+    "base64-stream": "^0.1.3",
     "chalk": "^1.1.3",
     "elegant-spinner": "^1.0.1",
     "env-paths": "^0.1.0",
