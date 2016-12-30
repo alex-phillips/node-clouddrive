@@ -2,6 +2,12 @@
 
 All Notable changes to `clouddrive-node` will be documented in this file
 
+## 0.6.1
+
+### Fixed
+- `encrypt` and `decrypt` commands now require a source file path
+- The software was not properly checking if encryption was active before attempting to remove 'encrypted' file
+
 ## 0.6.0
 
 ### Added
