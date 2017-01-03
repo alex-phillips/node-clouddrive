@@ -2,6 +2,11 @@
 
 All Notable changes to `clouddrive-node` will be documented in this file
 
+## 0.6.3
+
+### Fixed
+- Removed redundant 'node' string in app name after upgrading `env-paths`
+
 ## 0.6.2
 
 ### Fixed
