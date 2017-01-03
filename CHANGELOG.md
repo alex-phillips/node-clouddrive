@@ -2,6 +2,11 @@
 
 All Notable changes to `clouddrive-node` will be documented in this file
 
+## 0.6.2
+
+### Fixed
+- Upgrade version of `env-paths` to fix some thrown Exceptions on CentOS
+
 ## 0.6.1
 
 ### Fixed
