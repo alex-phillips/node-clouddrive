@@ -2,6 +2,13 @@
 
 All Notable changes to `clouddrive-node` will be documented in this file
 
+## 0.6.4
+
+### Added
+- `Utils` now contains method for rounding numbers
+- `Utils` now contains method for checking if a value exists in an array
+- New `config` option `--config` for passing in a custom config file
+
 ## 0.6.3
 
 ### Fixed
