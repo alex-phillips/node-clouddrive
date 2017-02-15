@@ -8,6 +8,10 @@ All Notable changes to `clouddrive-node` will be documented in this file
 - `Utils` now contains method for rounding numbers
 - `Utils` now contains method for checking if a value exists in an array
 - New `config` option `--config` for passing in a custom config file
+- Added global option to force or disable ANSI output
+
+### Fixed
+- Fixed two memory leaks involving open file streams
 
 ## 0.6.3
 
