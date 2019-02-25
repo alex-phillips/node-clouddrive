@@ -58,7 +58,7 @@ https://www.amazon.com/ap/oa?client_id=...
 ? url:
 ```
 
-Naviage to the URL displayed to to authorize the app with your Cloud Drive account using your credentials. This will redirect your browser to a new URL: paste that URL back into the prompt.
+Navigate to the URL displayed to to authorize the app with your Cloud Drive account using your credentials. This will redirect your browser to a new URL: paste that URL back into the prompt.
 
 ### Syncing
 
